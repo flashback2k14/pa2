@@ -1,0 +1,215 @@
+\documentclass[a4paper, 12pt]{article}
+%--------------------------------------
+% Abstände
+%--------------------------------------
+\usepackage[left=30mm,right=20mm,top=25mm,headsep=15mm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+%--------------------------------------
+% encoding
+%--------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%--------------------------------------
+% Änderung Schriftart
+% Quelle: http://www.math.tu-dresden.de/~rudl/latex/fonts.pdf
+%--------------------------------------
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+%--------------------------------------
+% German-specific commands
+%--------------------------------------
+\usepackage[ngerman]{babel}
+%--------------------------------------
+% Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{Sage Office Line GHS CLP gebinde-spezifische IDcmCallback FZPGHSDruckauftrag Untergruppen}
+%--------------------------------------
+% Hyperlinks
+%--------------------------------------
+\usepackage{url}
+\usepackage{hyperref}
+%--------------------------------------
+% Grafiken
+%--------------------------------------
+\usepackage[rightcaption]{sidecap}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[skip=7pt]{caption}
+\usepackage{here}
+\graphicspath{{Images/}}
+%--------------------------------------
+% Enum
+%--------------------------------------
+\usepackage{enumitem}
+%--------------------------------------
+% Kopf-& Fußzeile
+%--------------------------------------
+\usepackage{color}
+\definecolor{fzp}{rgb}{0.565,0.612,0.671}
+\usepackage{fancyhdr}
+\setlength{\headheight}{27pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand\headrule
+{{\color{fzp}%
+    \hrule height 3pt width \headwidth
+    \vspace{1pt}%
+	\hrule height 1pt width \headwidth
+	\vspace{-4pt}
+}}
+%Fußzeile rechts
+\fancyfoot[R]{\thepage}
+%Fußzeile Plain
+\fancypagestyle{plain}{ %
+  \fancyhf{} % remove everything
+  \renewcommand{\headrulewidth}{0pt} % remove lines as well
+  \renewcommand{\footrulewidth}{0pt}
+  \renewcommand{\headrule}{}
+  \fancyfoot[R]{\thepage}
+}
+\setlength{\headsep}{20pt}
+%--------------------------------------
+% Fußnote 
+%--------------------------------------
+\usepackage[hang]{footmisc}
+%--------------------------------------
+% Quellcode 
+%--------------------------------------
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codeblue}{rgb}{0,0,1}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{white}{rgb}{1,1,1}
+\definecolor{black}{rgb}{0,0,0}
+\lstset {
+    breaklines=true,
+    tabsize=3,
+    showstringspaces=false
+}
+\lstdefinestyle{Common} {
+    extendedchars=\true,
+    language={[Visual]Basic},
+    morekeywords={Using, As, New, Inherits, Class, Of},
+    frame=single,
+    %===========================================================
+    framesep=3pt,%expand outward.
+    framerule=0.4pt,%expand outward.
+    xleftmargin=3.4pt,%make the frame fits in the text area. 
+    xrightmargin=3.4pt,%make the frame fits in the text area.
+    %=========================================================== 
+    numbers=left,                    
+    numbersep=-10pt,
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=1,
+    captionpos=b
+}
+\lstdefinestyle{A} {
+    style=Common,
+    rulecolor=\color{black},
+    backgroundcolor=\color{white},
+    basicstyle=\scriptsize\color{black}\ttfamily,
+    keywordstyle=\color{codeblue},
+    identifierstyle=\color{black},
+    stringstyle=\color{codepurple},
+    commentstyle=\color{codegreen}
+}
+%--------------------------------------
+% PDF 
+%--------------------------------------
+\usepackage{pdfpages}
+%--------------------------------------
+% Table 
+%--------------------------------------
+\usepackage{tabu}
+%--------------------------------------
+% Quellenverzeichnis 
+%--------------------------------------
+\usepackage{csquotes}
+\usepackage[backend=biber,defernumbers,sorting=none,firstinits=true]{biblatex}
+\addbibresource{biblo.bib}
+%--------------------------------------
+\begin{document}
+%--------------------------------------
+% großzügige Formatierungsweise
+%--------------------------------------
+\sloppy
+%--------------------------------------
+% Deckblatt
+%--------------------------------------
+\input{deckblatt}
+%--------------------------------------
+% Inhaltsverzeichnis
+%--------------------------------------
+\newpage
+\pagenumbering{Roman}
+\tableofcontents
+%--------------------------------------
+% Abbildungsverzeichnis
+%--------------------------------------
+\newpage
+\listoffigures
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+\lstlistoflistings
+\addcontentsline{toc}{section}{Quellcodeverzeichnis}
+%--------------------------------------
+% Einleitung
+%--------------------------------------
+\newpage
+\clearpage 
+\pagenumbering{arabic}   
+
+\section{Einleitung}
+\label{sec:Einleitung}
+\input{einleitung}
+%--------------------------------------
+% Grundlagen
+%--------------------------------------
+\newpage
+\section{Grundlagen}
+\label{sec:Grundlagen}
+\input{grundlagen}
+%--------------------------------------
+% Konzeption
+%--------------------------------------
+\newpage
+\section{Konzeption}
+\label{sec:Konzeption}
+\input{konzeption}
+%--------------------------------------
+% Umsetzung & Ergebnisse
+%--------------------------------------
+\newpage
+\section{Umsetzung}
+\label{sec:Umsetzung}
+\input{umsetzung}
+%--------------------------------------
+% Zusammenfassung
+%--------------------------------------
+\newpage
+\section{Zusammenfassung}
+\label{sec:Zusammenfassung}
+\input{zusammenfassung}
+%--------------------------------------
+% Anhang
+%--------------------------------------
+\newpage
+\section{Anhang}
+\label{sec:Anhang}
+\input{anhang}
+%--------------------------------------
+% Quellenverzeichnis
+%--------------------------------------
+\newpage
+\section{Quellenverzeichnis}
+\printbibliography[title={ }]
+%--------------------------------------
+% Selbststänigkeitserklärung
+%--------------------------------------
+\newpage
+\section*{Selbstständigkeitserklärung}
+\input{selbststaendig}
+\end{document}
